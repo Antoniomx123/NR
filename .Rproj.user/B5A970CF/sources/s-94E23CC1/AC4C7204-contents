@@ -1,6 +1,6 @@
 #### NR LICENCIATURA #####
 t <- proc.time()
-#Cargamos CSV desde Front
+#Cargamos CSV desde la carpeta Front del Victor
 Reporte <- read.csv("C:/Users/jvelazhe/Google Drive/reportes/lic/reporte_completo.csv", header = TRUE, sep = ",",encoding = "UTF-8")
 Reporte <- subset(Reporte,grupo != "Grupo_S")
 Reporte <- subset(Reporte,grupo != "Grupo_O")
@@ -74,7 +74,7 @@ ponderacioneslic <- read_excel("D:/Users/eescobev/Documents/REPORTES/ESTADOS/pon
 Reporte <- dplyr::left_join(Reporte,ponderacioneslic,by="CONCA")
 Reporte$nr <- if_else(Reporte$ultimo_acceso_m == "Nunca","Nuncas",
                       if_else(Reporte$calificacion == 0,"Np",
-                              if_else(Reporte$calificacion <= Reporte$REPROBO,"Reprob?",
+                              if_else(Reporte$calificacion <= Reporte$REPROBO,"Reprobó",
                                       if_else(Reporte$calificacion > Reporte$REPROBO & Reporte$calificacion < Reporte$APROBADO,"Por aprobar",
                                               if_else(Reporte$calificacion >= Reporte$APROBADO,"Aprobado","Sin Registro")))))
 
@@ -171,7 +171,7 @@ names(GENERAL)[5]="FECHA_NAC"
 Fase3 <- plyr::join(Fase2,GENERAL, by="MATRICULA", type = "left",match="all")
 Entidatt <-readxl::read_excel("D:/Users/jvelazhe/Desktop/Licenciaturas/Sabana/Entidat.xlsx")
 Fase3 <- plyr::join(Fase3,Entidatt, by="ESTADO", type = "left", match = "all")
-Fase3$Entidad[is.na(Fase3$Entidad)]<-"Resto del pa?s"
+Fase3$Entidad[is.na(Fase3$Entidad)]<-"Resto del país"
 
 
 #Fase 4 financiero para datos de email, telefono, adeudo y mora####
@@ -198,7 +198,7 @@ Fase4 <- plyr::join(Fase3,Financierosir, by= "Matr", type="left", match="all")
 
 
 
-##Fase 5 Asignaci?n####
+##Fase 5 Asignación####
 Asignacion <-read.csv("D://Users/eescobev/Documents/REPORTES/ESTADOS/asignacion.csv", header = TRUE,sep = ",")
 names(Asignacion)[2]="MATRICULA"
 names(Asignacion)
@@ -231,7 +231,7 @@ semana<- readxl::read_excel("D:/Users/jvelazhe/Desktop/Licenciaturas/Sabana/sema
 Fase6<- plyr::join(Fase6,semana, by="dia",type = "left",match = "all")
 
 
-#Fase 7 Potencial Asignaci?n####
+#Fase 7 Potencial Asignación####
 Fase7 <- Fase5
 Fase7$fecha_hora_extraccion<- Sys.Date()
 Fase7$inip <- Fase7$inicio_plus
@@ -275,13 +275,13 @@ names(Fase8)
 
 #Fase8tac$fecha_hora_extraccion<- Sys.Date()
 #names(Fase8tac)[39]="Visitas"
-#Fase8te<-dplyr::select(Fase8tac,id_us,cuatrimestre,MATRICULA,`Bloque seguimiento`,`Bloque ingreso`,BTI,`Tipo alumno`,Contenci?n,Espacios,Visitas,`clave materia`,aula,Nombre.Alumno,Nombre,Apellidos,CORREO_PRINCIPAL,TELEFONO_CELULAR,grupo,asignatura,`Matricula de profesor`,Profesor,Tutor,Supervisor,`Matricula GCA`,`Nombre completo de GCA`,`Matricula RE`,`Nombre completo de RE`,ultimo_acceso_m,ultimo_acceso_auvi,calificacion_potencial,calificacion,Docs,inicio_plus,nr,Correo,`Correo electronico GCA`,`Correo electronico RE`,Correo.Tutor,status,status_plataforma,ciclo_ingreso,FECHA_MATRICULACION,PROGRAMA_CODE,NOMBRE_PROGRAMA,SEXO,FECHA_NAC,modalidad,Entidad,ESTATUS,FECHA_ESTATUS,Asignacion,ESTATUS2,fecha_hora_extraccion,semana)
+#Fase8te<-dplyr::select(Fase8tac,id_us,cuatrimestre,MATRICULA,`Bloque seguimiento`,`Bloque ingreso`,BTI,`Tipo alumno`,Contención,Espacios,Visitas,`clave materia`,aula,Nombre.Alumno,Nombre,Apellidos,CORREO_PRINCIPAL,TELEFONO_CELULAR,grupo,asignatura,`Matricula de profesor`,Profesor,Tutor,Supervisor,`Matricula GCA`,`Nombre completo de GCA`,`Matricula RE`,`Nombre completo de RE`,ultimo_acceso_m,ultimo_acceso_auvi,calificacion_potencial,calificacion,Docs,inicio_plus,nr,Correo,`Correo electronico GCA`,`Correo electronico RE`,Correo.Tutor,status,status_plataforma,ciclo_ingreso,FECHA_MATRICULACION,PROGRAMA_CODE,NOMBRE_PROGRAMA,SEXO,FECHA_NAC,modalidad,Entidad,ESTATUS,FECHA_ESTATUS,Asignacion,ESTATUS2,fecha_hora_extraccion,semana)
 
 
 
 
 #Fase 9 cambio de nombres a columnnas####
-Fase9<-dplyr::select(Fase8,id_us,cuatrimestre,MATRICULA,`Bloque seguimiento`,`Bloque ingreso`,BTI,`Tipo alumno`,Contenci?n,Espacios,Visitas,`clave materia`,aula,Nombre.Alumno,Nombre,Apellidos,CORREO_PRINCIPAL,TELEFONO_CELULAR,grupo,asignatura,`Matricula de profesor`,Profesor,Tutor,Supervisor,`Matricula GCA`,`Nombre completo de GCA`,`Matricula RE`,`Nombre completo de RE`,ultimo_acceso_m,ultimo_acceso_auvi,calificacion_potencial,calificacion,Docs,inicio_plus,nr,Correo,`Correo electronico GCA`,`Correo electronico RE`,Correo.Tutor,status,status_plataforma,ciclo_ingreso,FECHA_MATRICULACION,PROGRAMA_CODE,NOMBRE_PROGRAMA,SEXO,FECHA_NAC,modalidad,Entidad,ESTATUS,FECHA_ESTATUS,Asignacion,ESTATUS2,fecha_hora_extraccion,semana)
+Fase9<-dplyr::select(Fase8,id_us,cuatrimestre,MATRICULA,`Bloque seguimiento`,`Bloque ingreso`,BTI,`Tipo alumno`,Contención,Espacios,Visitas,`clave materia`,aula,Nombre.Alumno,Nombre,Apellidos,CORREO_PRINCIPAL,TELEFONO_CELULAR,grupo,asignatura,`Matricula de profesor`,Profesor,Tutor,Supervisor,`Matricula GCA`,`Nombre completo de GCA`,`Matricula RE`,`Nombre completo de RE`,ultimo_acceso_m,ultimo_acceso_auvi,calificacion_potencial,calificacion,Docs,inicio_plus,nr,Correo,`Correo electronico GCA`,`Correo electronico RE`,Correo.Tutor,status,status_plataforma,ciclo_ingreso,FECHA_MATRICULACION,PROGRAMA_CODE,NOMBRE_PROGRAMA,SEXO,FECHA_NAC,modalidad,Entidad,ESTATUS,FECHA_ESTATUS,Asignacion,ESTATUS2,fecha_hora_extraccion,semana)
 
 #************* Union Teleton - UTEL *********************
 Fase9 <- rbind(Fase9)#Fase8te)
@@ -294,7 +294,7 @@ names(Fase9)[4]="Bloque seguimiento"
 names(Fase9)[5]="Bloque ingreso"
 names(Fase9)[6]="BTI"
 names(Fase9)[7]="Tipo alumno"
-names(Fase9)[8]="Contenci?n"
+names(Fase9)[8]="Contención"
 names(Fase9)[9]="Espacios"
 names(Fase9)[10]="# Visitas"
 names(Fase9)[11]="clave_materia"
@@ -336,7 +336,7 @@ names(Fase9)[46]="modalidad_evaluacion"
 names(Fase9)[47]="domicilio"
 names(Fase9)[48]="stutus"
 names(Fase9)[49]="Max edo"
-names(Fase9)[50]="Asignaci?n"
+names(Fase9)[50]="Asignación"
 names(Fase9)[51]="estado escolares"
 names(Fase9)[52]="fecha_hora_extraccion"
 names(Fase9)[53]="Semana en curso"
@@ -350,7 +350,7 @@ Fase9[,22] <- as.character(as.character(Fase9[,22]))
 Fase9[,50] <- as.character(as.character(Fase9[,50]))
 Fase9$tutor[is.na(Fase9$tutor)]<-"por_asignar"
 Fase9$supervisor[is.na(Fase9$supervisor)]<-"por_asignar"
-Fase9$Asignaci?n[is.na(Fase9$Asignaci?n)]<-"por_asignar"
+Fase9$Asignación[is.na(Fase9$Asignación)]<-"por_asignar"
 tiposbajas <- read.csv("D:/Users/eescobev/Documents/REPORTES/ESTADOS/tiposbajas.csv",header = T,sep = ",",encoding = "UTF-8")
 Fase9 <- dplyr::left_join(Fase9,tiposbajas,by="stutus")
 Fase9$Mon <- lubridate::month(Fase9$`Max edo`)
