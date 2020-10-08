@@ -35,12 +35,12 @@ R3 <- grep("1409",Reporte$clave, ignore.case = TRUE)
 Reporte3 <- Reporte[R3,]
 R4 <- grep("2809",Reporte$clave, ignore.case = TRUE)
 Reporte4 <- Reporte[R4,]
-R5 <- grep("2206",Reporte$clave, ignore.case = TRUE)
+R5 <- grep("1210",Reporte$clave, ignore.case = TRUE)
 Reporte5 <- Reporte[R5,]
 
 
 
-Reporte <- rbind(Reporte1,Reporte2,Reporte3,Reporte4)
+Reporte <- rbind(Reporte1,Reporte2,Reporte3,Reporte4,Reporte5)
 Reporte <- Reporte[!duplicated(Reporte),]
 
 Reporte$clavemat <- Reporte$clave
