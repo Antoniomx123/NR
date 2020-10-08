@@ -1,6 +1,7 @@
 #### NR LICENCIATURA #####
 t <- proc.time()
 #Cargamos CSV desde la carpeta Front del Victor
+#Agrego un comentario
 Reporte <- read.csv("C:/Users/jvelazhe/Google Drive/reportes/lic/reporte_completo.csv", header = TRUE, sep = ",",encoding = "UTF-8")
 Reporte <- subset(Reporte,grupo != "Grupo_S")
 Reporte <- subset(Reporte,grupo != "Grupo_O")
